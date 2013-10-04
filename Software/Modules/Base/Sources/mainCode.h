@@ -23,10 +23,6 @@ class MainCode : public Base{
 protected:
 	virtual void threadFunc() = 0;
 
-	DispatcherClient dispatcherClient;
-	Log log;
-	WebServer webServer;
-
 public:
 	virtual ~MainCode(){}
 
@@ -47,15 +43,16 @@ public:
 				return;
 			}
 
-			dispatcherClient.start(moduleName.c_str());
-			log.start();
-			webServer.start();
+
+			DispatcherClient::getInstance().start(moduleName.c_str());
+			Log::getInstance().start();
+			WebServer::getInstance().start();
 
 			threadFunc();
 
-			webServer.join();
-			log.join();
-			dispatcherClient.join();
+			WebServer::getInstance().join();
+			Log::getInstance().join();
+			DispatcherClient::getInstance().join();
 		}
 		catch(const ExceptionDispatcherClient& e){
 			throw ExceptionMainCode();

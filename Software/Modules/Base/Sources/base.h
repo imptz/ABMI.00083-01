@@ -21,7 +21,7 @@ public:
 	}
 
 	void setInstanceFlag(){
-		//cout << __FUNCTION__ << " " << id << endl;
+		cout << __FUNCTION__ << " " << id << endl;
 		baseMutex.lock();
 		instancesFlags[id] = true;
 		baseMutex.unlock();
@@ -34,24 +34,5 @@ public:
 };
 
 vector<bool> Base::instancesFlags;
-
-
-Base 0
-Base 1
-Base 2
-Base 3
-server
-	ip = 127.0.0.1
-	port = 1284
-dispatcher
-	ip = 127.0.0.1
-	port = 9856
-	time_out = 5
-log
-	ip = 127.0.0.1
-	port = 776
-Base 4
-
-
 
 #endif

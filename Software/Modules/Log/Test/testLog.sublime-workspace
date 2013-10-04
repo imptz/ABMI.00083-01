@@ -1,0 +1,309 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getTextEncodeSize"
+			],
+			[
+				"new",
+				"newTask"
+			],
+			[
+				"__F",
+				"__FUNCTION__"
+			],
+			[
+				"task",
+				"taskPool"
+			],
+			[
+				"th",
+				"threadAction"
+			],
+			[
+				"pAllo",
+				"pAllocHead"
+			],
+			[
+				"inc",
+				"include"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.cpp",
+			"settings":
+			{
+				"buffer_size": 889,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "makefile",
+			"settings":
+			{
+				"buffer_size": 398,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Makefile/Make.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/testBase",
+		"/home/ilja/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/User/JSON.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/User/test",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xmlExceptions.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/Loader/loader.s",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Src/touchpad.cpp",
+		"/media/DACE-470F/Progects/Is/1/Is/is1",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Frontend/clientUser.js",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beUser.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/feUser.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/dbUser.php",
+		"/media/DACE-470F/Progects/Is/is.zip",
+		"/mnt/home/ilja/Projects/Web/Site/Www/sys/users/user.php",
+		"/mnt/home/ilja/Projects/Web/Site/Www/sys/users/login/login.php",
+		"/mnt/home/ilja/Projects/Web/Site/Www/js/main.js",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.1/Src/Modules/Serials/KernelModules/Lib/netLink.c",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.1/Src/Modules/Serials/KernelModules/Lib/netLink.h",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/feNews.php",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Include/interrupt.h",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beNews.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beInteraction.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/designDocument.txt",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/clientUser.js",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Src/interrupt.s",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/clientUser",
+		"/mnt/home/ilja/Projects/e/index.html",
+		"/mnt/home/ilja/Projects/e/specification",
+		"/mnt/home/ilja/Dropbox/20082013/Site/main.js",
+		"/mnt/home/ilja/Projects/e/main.js",
+		"/mnt/home/ilja/Projects/e/Site/main.js",
+		"/mnt/home/ilja/Projects/e/Site/index.html",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/users/login/js/login.js",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/users/userReg/js/userReg.js",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/tools/toolsDb.php",
+		"/mnt/home/ilja/Projects/Web/Template/www/index.html",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/thread.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/task.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/balancer.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/balancer.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/fcgi.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/fcgi.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/makefile",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/pool.hpp",
+		"/mnt/home/ilja/Projects/Test/main.cpp",
+		"/mnt/home/ilja/Projects/Test/pool.hpp",
+		"/mnt/home/ilja/Projects/Test/makefile",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/main.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/dlist.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_fcgi.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_cmd.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_balancer.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_balancer.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_thread.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_thread.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_task.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_main.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_fcgi.hpp",
+		"/mnt/home/ilja/Projects/e/js/main.js",
+		"/mnt/home/ilja/Projects/Test/dlist.hpp",
+		"/mnt/home/ilja/Projects/Test/list.hpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			").\n",
+			"'.\n",
+			"%\">",
+			"backlog",
+			"\n			",
+			"	list.release(p1);\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.cpp",
+					"settings":
+					{
+						"buffer_size": 889,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "makefile",
+					"settings":
+					{
+						"buffer_size": 398,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								180,
+								180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 240.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/mnt/home/ilja/Projects/Web/Test/test-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

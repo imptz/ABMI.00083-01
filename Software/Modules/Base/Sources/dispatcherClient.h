@@ -37,7 +37,7 @@ public:
 	}
 };
 
-class DispatcherClient : public Base{
+class DispatcherClient : public Base, public Singleton<DispatcherClient>{
 private:
 	thread _thread;
 
@@ -45,13 +45,13 @@ private:
 	int dispatcherSocket;
 	sockaddr_in dispatcherAddr;
 
-	char* sendPacket;
-	unsigned int sendPacketSize;
-	DispatcherPacketHeader* sendPacketHeader;
+	char* sendFrame;
+	unsigned int sendFrameSize;
+	DispatcherFrameHeader* sendFrameHeader;
 
 public:
 	DispatcherClient()	:
-		timeOut(0), dispatcherSocket(0), sendPacket(nullptr), sendPacketSize(0), sendPacketHeader(nullptr)
+		timeOut(0), dispatcherSocket(0), sendFrame(nullptr), sendFrameSize(0), sendFrameHeader(nullptr)
 	{}
 
 	~DispatcherClient(){
@@ -115,12 +115,14 @@ private:
 			setInstanceFlag();
 
 			bool isAllFlagsSet = true;
-			for (unsigned int i = 0; i < instancesFlags.size(); ++i)
+			for (unsigned int i = 0; i < instancesFlags.size(); ++i){
+				std::cout << __FUNCTION__ << " instancesFlags[" << i << "] = " << instancesFlags[i] << std::endl;
 				if (!instancesFlags[i])
 					isAllFlagsSet = false;
+			}
 
 			if (isAllFlagsSet)
-				dispatcherSendPacket();
+				dispatcherSendFrame();
 
 			clearAllInstancesFlags();
 		}
@@ -138,30 +140,30 @@ private:
 
 		unsigned int moduleNameLength = strlen(moduleName);
 
-		sendPacket = new char[sizeof(DispatcherPacketHeader) + moduleNameLength];
-		if (sendPacket == nullptr){
+		sendFrame = new char[sizeof(DispatcherFrameHeader) + moduleNameLength];
+		if (sendFrame == nullptr){
 			close(dispatcherSocket);
 			throw ExceptionDispatcherClientDispatcherUp();
 		}
 
-		sendPacketHeader = reinterpret_cast<DispatcherPacketHeader*>(sendPacket);
+		sendFrameHeader = reinterpret_cast<DispatcherFrameHeader*>(sendFrame);
 
-		sendPacketHeader->messageNumber = 0;
-		sendPacketHeader->hash = Crc32::calcCrc(reinterpret_cast<const unsigned char*>(moduleName), moduleNameLength);
-		memcpy(sendPacket + sizeof(DispatcherPacketHeader), moduleName, moduleNameLength);
+		sendFrameHeader->messageNumber = 0;
+		sendFrameHeader->hash = Crc32::calcCrc(reinterpret_cast<const unsigned char*>(moduleName), moduleNameLength);
+		memcpy(sendFrame + sizeof(DispatcherFrameHeader), moduleName, moduleNameLength);
 
-		sendPacketSize = moduleNameLength + sizeof(DispatcherPacketHeader);
+		sendFrameSize = moduleNameLength + sizeof(DispatcherFrameHeader);
 	}
 
 	void down(){
 		close(dispatcherSocket);
-		if (sendPacket != nullptr)
-			delete[] sendPacket;
+		if (sendFrame != nullptr)
+			delete[] sendFrame;
 	}
 
-	void dispatcherSendPacket(){
-		sendto(dispatcherSocket, sendPacket, sendPacketSize, 0, (struct sockaddr*) &dispatcherAddr, sizeof(dispatcherAddr));
-		++(sendPacketHeader->messageNumber);
+	void dispatcherSendFrame(){
+		sendto(dispatcherSocket, sendFrame, sendFrameSize, 0, (struct sockaddr*) &dispatcherAddr, sizeof(dispatcherAddr));
+		++(sendFrameHeader->messageNumber);
 	}
 };
 #endif

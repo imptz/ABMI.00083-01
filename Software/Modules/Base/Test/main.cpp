@@ -17,15 +17,21 @@ public:
 	virtual ~MainCodeTest(){}
 };
 
+// int main(int argc, const char* argv[]) {
+// 	MainCodeTest mainCode;
+
+// 	try{
+// 		mainCode.start(argc, argv);
+// 	}
+// 	catch(const ExceptionMainCode& e){
+// 		cout << e.what() << endl;
+// 	}
+
+// 	return 0;
+// }
+
+#include "threadPool.h"
+
 int main(int argc, const char* argv[]) {
-	MainCodeTest mainCode;
-
-	try{
-		mainCode.start(argc, argv);
-	}
-	catch(const ExceptionMainCode& e){
-		cout << e.what() << endl;
-	}
-
-	return 0;
+	cout << "PoolTest::test == " << PoolTest::test() << endl;	
 }

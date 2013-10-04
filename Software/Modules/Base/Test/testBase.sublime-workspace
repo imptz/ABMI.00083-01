@@ -1,0 +1,694 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getTextEncodeSize"
+			],
+			[
+				"new",
+				"newTask"
+			],
+			[
+				"__F",
+				"__FUNCTION__"
+			],
+			[
+				"task",
+				"taskPool"
+			],
+			[
+				"th",
+				"threadAction"
+			],
+			[
+				"pAllo",
+				"pAllocHead"
+			],
+			[
+				"inc",
+				"include"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "makefile",
+			"settings":
+			{
+				"buffer_size": 399,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.cpp",
+			"settings":
+			{
+				"buffer_size": 677,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/base.h",
+			"settings":
+			{
+				"buffer_size": 641,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/cmd.h",
+			"settings":
+			{
+				"buffer_size": 1134,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/config.h",
+			"settings":
+			{
+				"buffer_size": 1640,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "#ifndef THREAD_POOL_H\n#define THREAD_POOL_H\n\n#include <vector>\n\nusing namespace std;\n\ntemplate<typename T, unsigned int initSize = 10>\nclass Pool{\n	struct Item{\n		bool free;\n		T* elem;\n\n		Item()\n			:	free(true), elem(new T())\n		{}\n\n		~Item(){\n			delete elem;\n		}\n	};\n\n	vector<Item*> pool;\n\npublic:\n	Pool(){\n		for (unsigned int i = 0; i < initSize; ++i)\n			pool.push_back(new Item);\n	}\n\n	~Pool(){\n		for (unsigned int i = 0; i < pool.size(); ++i)\n			delete pool[i];\n	}\n\n	T* get(){\n		for (unsigned int i = 0; i < pool.size(); ++i){\n			if (pool[i]->free){\n				pool[i]->free = false;\n				return pool[i]->elem;\n			}\n		}\n\n		pool.push_back(new Item);\n		pool[pool.size() - 1]->free = false;\n		return pool[pool.size() - 1]->elem;\n	}\n\n	void free(T* item){\n		for (unsigned int i = 0; i < pool.size(); ++i)\n			if (pool[i]->elem == item)\n				pool[i]->free = false;\n	}\n};\n\nclass PoolTest{\npublic:\n	static bool test(){\n		Pool<int, 4> pool;\n		const unsigned int SIZE = 19;\n		const unsigned int DELTA = 3;\n\n		int* data[SIZE + DELTA];\n		for (unsigned i = 0; i < SIZE; ++i){\n			data[i] = pool.get();\n			*(data[i]) = i * 2;\n		}\n\n		bool result = true;\n		for (unsigned i = 0; i < SIZE; ++i){\n			if (*(data[i]) != i * 2)\n				result = false;\n		}\n\n		for (unsigned i = 0; i < SIZE + DELTA; ++i){\n			pool.free(data[i]);\n		}\n\n		for (unsigned i = 0; i < SIZE + DELTA; ++i){\n			data[i] = pool.get();\n			*(data[i]) = i * 3;\n		}\n\n		for (unsigned i = 0; i < SIZE + DELTA; ++i){\n			if (*(data[i]) != i * 3)\n				result = false;\n		}\n\n		return result;\n	}\n};\n\n\n\n#endif\n",
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.h",
+			"file_size": 1528,
+			"file_write_time": 1380884613000000,
+			"settings":
+			{
+				"buffer_size": 1530,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.h",
+			"settings":
+			{
+				"buffer_size": 4024,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
+			"settings":
+			{
+				"buffer_size": 4426,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Dispatcher/Sources/dispatcherProtocol.h",
+			"settings":
+			{
+				"buffer_size": 193,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/log.h",
+			"settings":
+			{
+				"buffer_size": 2094,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.h",
+			"settings":
+			{
+				"buffer_size": 1571,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/singleton.h",
+			"settings":
+			{
+				"buffer_size": 272,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
+			"settings":
+			{
+				"buffer_size": 3259,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Makefile/Make.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/testBase",
+		"/home/ilja/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/User/JSON.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/ilja/.config/sublime-text-2/Packages/User/test",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xmlExceptions.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/Loader/loader.s",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Src/touchpad.cpp",
+		"/media/DACE-470F/Progects/Is/1/Is/is1",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Frontend/clientUser.js",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beUser.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/feUser.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/dbUser.php",
+		"/media/DACE-470F/Progects/Is/is.zip",
+		"/mnt/home/ilja/Projects/Web/Site/Www/sys/users/user.php",
+		"/mnt/home/ilja/Projects/Web/Site/Www/sys/users/login/login.php",
+		"/mnt/home/ilja/Projects/Web/Site/Www/js/main.js",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.1/Src/Modules/Serials/KernelModules/Lib/netLink.c",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.1/Src/Modules/Serials/KernelModules/Lib/netLink.h",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/feNews.php",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Include/interrupt.h",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beNews.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/Backend/beInteraction.php",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/designDocument.txt",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/clientUser.js",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00058.0/System/Src/Src/interrupt.s",
+		"/mnt/home/ilja/Projects/Web/Site/Doc/Design Document/clientUser",
+		"/mnt/home/ilja/Projects/e/index.html",
+		"/mnt/home/ilja/Projects/e/specification",
+		"/mnt/home/ilja/Dropbox/20082013/Site/main.js",
+		"/mnt/home/ilja/Projects/e/main.js",
+		"/mnt/home/ilja/Projects/e/Site/main.js",
+		"/mnt/home/ilja/Projects/e/Site/index.html",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/users/login/js/login.js",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/users/userReg/js/userReg.js",
+		"/mnt/home/ilja/Projects/Web/Template/www/sys/tools/toolsDb.php",
+		"/mnt/home/ilja/Projects/Web/Template/www/index.html",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/thread.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/task.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/balancer.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/balancer.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/fcgi.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/fcgi.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/makefile",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/pool.hpp",
+		"/mnt/home/ilja/Projects/Test/main.cpp",
+		"/mnt/home/ilja/Projects/Test/pool.hpp",
+		"/mnt/home/ilja/Projects/Test/makefile",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/main.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/dlist.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_fcgi.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_cmd.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_balancer.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_balancer.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_thread.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_thread.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_task.hpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_main.cpp",
+		"/mnt/home/ilja/Projects/Web/WebEngine/Services/Presentation/presentation_fcgi.hpp",
+		"/mnt/home/ilja/Projects/e/js/main.js",
+		"/mnt/home/ilja/Projects/Test/dlist.hpp",
+		"/mnt/home/ilja/Projects/Test/list.hpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			").\n",
+			"'.\n",
+			"%\">",
+			"backlog",
+			"\n			",
+			"	list.release(p1);\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "makefile",
+					"settings":
+					{
+						"buffer_size": 399,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								399,
+								399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.cpp",
+					"settings":
+					{
+						"buffer_size": 677,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/base.h",
+					"settings":
+					{
+						"buffer_size": 641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346,
+								346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/cmd.h",
+					"settings":
+					{
+						"buffer_size": 1134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								444,
+								444
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/config.h",
+					"settings":
+					{
+						"buffer_size": 1640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								501,
+								501
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.h",
+					"settings":
+					{
+						"buffer_size": 1530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								955,
+								955
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 786.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.h",
+					"settings":
+					{
+						"buffer_size": 4024,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
+					"settings":
+					{
+						"buffer_size": 4426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								860,
+								860
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 456.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Dispatcher/Sources/dispatcherProtocol.h",
+					"settings":
+					{
+						"buffer_size": 193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								142,
+								142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/log.h",
+					"settings":
+					{
+						"buffer_size": 2094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								578,
+								578
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.h",
+					"settings":
+					{
+						"buffer_size": 1571,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1162,
+								1162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/singleton.h",
+					"settings":
+					{
+						"buffer_size": 272,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
+					"settings":
+					{
+						"buffer_size": 3259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								909,
+								909
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 988.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 240.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/mnt/home/ilja/Projects/Web/Test/test-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

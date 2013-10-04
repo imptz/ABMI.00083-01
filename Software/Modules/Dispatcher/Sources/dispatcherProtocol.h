@@ -3,7 +3,7 @@
 
 #pragma pack(push, 1)
 
-struct DispatcherPacketHeader{
+struct DispatcherFrameHeader{
 	unsigned int messageNumber;
 	unsigned int hash;
 };

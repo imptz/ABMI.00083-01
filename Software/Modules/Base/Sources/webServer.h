@@ -35,7 +35,7 @@ public:
 	}
 };
 
-class WebServer : public Base{
+class WebServer : public Base, public Singleton<WebServer>{
 private:
 	thread _thread;
 

@@ -50,7 +50,7 @@ public:
 
 map<string, string> Cmd::parameters;
 const string Cmd::CMD_NAME = "name";
-const string Cmd::CMD_CONFIG_FILE = "config_file";
+const string Cmd::CMD_CONFIG_FILE = "c";
 const string Cmd::CMD_LAUNCH_DISPATCHER = "launch_dispatcher";
 
 #endif
