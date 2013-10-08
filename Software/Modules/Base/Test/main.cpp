@@ -2,6 +2,7 @@
 
 #include "mainCode.h"
 #include "log.h"
+#include "threadPool.h"
 
 using namespace std;
 
@@ -17,6 +18,11 @@ public:
 	virtual ~MainCodeTest(){}
 };
 
+int main(int argc, const char* argv[]) {
+	cout << PoolTest::test() << endl;
+	return 0;
+}
+
 // int main(int argc, const char* argv[]) {
 // 	MainCodeTest mainCode;
 
@@ -30,8 +36,3 @@ public:
 // 	return 0;
 // }
 
-#include "threadPool.h"
-
-int main(int argc, const char* argv[]) {
-	cout << "PoolTest::test == " << PoolTest::test() << endl;	
-}

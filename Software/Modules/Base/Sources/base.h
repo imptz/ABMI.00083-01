@@ -13,26 +13,9 @@ public:
 	static vector<bool> instancesFlags;
 	unsigned int id;
 
-	Base()	:
-		id(instancesFlags.size())
-	{
-		cout << __FUNCTION__ << " " << id << endl;
-		instancesFlags.push_back(false);
-	}
-
-	void setInstanceFlag(){
-		cout << __FUNCTION__ << " " << id << endl;
-		baseMutex.lock();
-		instancesFlags[id] = true;
-		baseMutex.unlock();
-	}
-
-	static void clearAllInstancesFlags(){
-		for(unsigned int i = 0; i < instancesFlags.size(); ++i)
-			instancesFlags[i] = false;
-	}
+	Base();
+	void setInstanceFlag();
+	static void clearAllInstancesFlags();
 };
-
-vector<bool> Base::instancesFlags;
 
 #endif
