@@ -20,7 +20,7 @@ protected:
 	virtual void threadFunc() = 0;
 
 public:
-	virtual ~MainCode();
+	//virtual ~MainCode() = 0;
 
 	void start(int argc, const char* argv[]) throw(ExceptionMainCode);
 };

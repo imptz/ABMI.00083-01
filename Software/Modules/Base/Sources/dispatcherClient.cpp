@@ -77,7 +77,7 @@ void DispatcherClient::threadFunc(){
 
 		bool isAllFlagsSet = true;
 		for (unsigned int i = 0; i < instancesFlags.size(); ++i){
-			std::cout << __FUNCTION__ << " instancesFlags[" << i << "] = " << instancesFlags[i] << std::endl;
+//			std::cout << __FUNCTION__ << " instancesFlags[" << i << "] = " << instancesFlags[i] << std::endl;
 			if (!instancesFlags[i])
 				isAllFlagsSet = false;
 		}

@@ -2,11 +2,14 @@
 #define POOL_H
 
 #include <iostream>
+#include <thread>
+#include <mutex>
 
-using namespace std;
-
-template<typename T, unsigned int initSize = 10>
+template<typename T, unsigned int initSize = 3>
 class Pool{
+private:
+	std::mutex mutex;
+
 	struct Item{
 		Item* prev;
 		Item* next;
@@ -59,6 +62,7 @@ public:
 	}
 
 	T* get(){		
+		std::lock_guard<std::mutex> lock(mutex);
 		if (listFree == nullptr)
 			allocListFree();
 
@@ -85,6 +89,7 @@ public:
 	}
 
 	void free(T* elem){
+		std::lock_guard<std::mutex> lock(mutex);
 		Item* item = listAlloc;
 		while(item != nullptr){
 			if (item->elem == elem){
@@ -111,25 +116,26 @@ public:
 	}
 
 	void print(){
+		std::lock_guard<std::mutex> lock(mutex);
 		Item* item = listFree;
-		cout << "listFree: " << item << endl;
+		std::cout << "id = " << std::this_thread::get_id() << "listFree: " << item << std::endl;
 		while(item != nullptr){
-			cout << "   item = " << item << endl;
-			cout << "   item->prev = " << item->prev << endl;
-			cout << "   item->next = " << item->next << endl;
-			cout << "   item->elem = " << *item->elem << endl << endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item = " << item << std::endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item->prev = " << item->prev << std::endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item->next = " << item->next << std::endl;
+//			std::cout << "   item->elem = " << *item->elem << std::endl << std::endl;
 			item = item->next;
 		}
 
-		cout << endl;
+		std::cout << std::endl;
 
 		item = listAlloc;
-		cout << "listAlloc: " << item << endl;
+		std::cout << "id = " << std::this_thread::get_id() << "listAlloc: " << item << std::endl;
 		while(item != nullptr){
-			cout << "   item = " << item << endl;
-			cout << "   item->prev = " << item->prev << endl;
-			cout << "   item->next = " << item->next << endl;
-			cout << "   item->elem = " << *item->elem << endl << endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item = " << item << std::endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item->prev = " << item->prev << std::endl;
+			std::cout << "id = " << std::this_thread::get_id() << "   item->next = " << item->next << std::endl;
+//			std::cout << "   item->elem = " << *item->elem << std::endl << std::endl;
 			item = item->next;
 		}
 	}

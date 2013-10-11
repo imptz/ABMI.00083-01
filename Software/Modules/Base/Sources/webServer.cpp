@@ -1,6 +1,6 @@
 #include "webServer.h"
 
-using namespace std;
+#include <iostream>
 
 const char* ExceptionWebServerStart::what() const throw(){
 	return "Start web server failed";
@@ -99,6 +99,21 @@ void WebServer::up(const char* _ip, unsigned int _port) throw(ExceptionWebServer
 		throw ExceptionWebServerUp();
 
 	listen(serverSocket, 1);
+
+	while(true){
+		int sock = accept(serverSocket, NULL, NULL);
+		if (sock >= 0){
+			char buf[1024];
+			int readCount = recv(sock, buf, 1024, 0);
+			if (readCount < 0)
+				break;
+
+			std::cout << buf << std::endl;
+			close(sock);
+		}
+	}
+
+
 }
 
 void WebServer::down(){

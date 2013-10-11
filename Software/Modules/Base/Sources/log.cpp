@@ -50,7 +50,7 @@ void Log::join(){
 
 void Log::putMessage(Message::TYPE type, const string& sender, const string& message){
 //		cout << __FUNCTION__ << " sender: " << sender << endl;
-	messagesMutex.lock();
+	std::lock_guard<std::mutex> lock(messagesMutex);
 //		cout << __FUNCTION__ << " in mutex " << " sender: " << sender << endl;
 	messages.push(Message(type, sender, message));
 	messagesMutex.unlock();
