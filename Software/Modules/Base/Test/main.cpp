@@ -38,23 +38,45 @@ public:
 	}
 };
 
-int main(int argc, const char* argv[]) {
-	MainCodeTest mainCode;
+#include "http.h"
 
-	A* a1 = new A();
-	A* a2 = new A();
-
+int main(int argc, const char* argv[]){
 	try{
-		ThreadPool tp;
-		tp.initThread(a1);
-		tp.initThread(a2);
+		std::string test = "GET /index sdsd\r\n\r\ntelo zaprosa\nsssssssssssssssssssssssssssssss\nffffffffffffffffffffffffffff";
 
-		mainCode.start(argc, argv);
-	}
-	catch(const ExceptionMainCode& e){
-		cout << e.what() << endl;
-	}
+		Http http;
+		HttpRequest request = http.parse(test);
 
+		std::cout << "requestType = " << request.type << endl;
+		std::cout << "requestResourcePath = " << request.resourcePath << endl;
+		std::cout << "requestBody = " << request.body << endl;
+	}catch(ExceptionHttpRequestType& e){
+		std::cout << e.what() << std::endl;
+	}catch(ExceptionHttpRequestResourcePath& e){
+		std::cout << e.what() << std::endl;
+	}catch(ExceptionHttpRequestBody& e){
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }
+
+// int main(int argc, const char* argv[]) {
+// 	MainCodeTest mainCode;
+
+// 	A* a1 = new A();
+// 	A* a2 = new A();
+
+// 	try{
+// 		ThreadPool tp;
+// 		tp.initThread(a1);
+// 		tp.initThread(a2);
+
+// 		mainCode.start(argc, argv);
+// 	}
+// 	catch(const ExceptionMainCode& e){
+// 		cout << e.what() << endl;
+// 	}
+
+// 	return 0;
+// }
 

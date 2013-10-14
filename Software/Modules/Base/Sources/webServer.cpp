@@ -108,6 +108,8 @@ void WebServer::up(const char* _ip, unsigned int _port) throw(ExceptionWebServer
 			if (readCount < 0)
 				break;
 
+			написать обработчик запроса
+
 			std::cout << buf << std::endl;
 			close(sock);
 		}
