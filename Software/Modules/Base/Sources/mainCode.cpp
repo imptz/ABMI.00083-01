@@ -8,6 +8,8 @@ const char* ExceptionMainCode::what() const throw(){
 	return "Start main code failed";
 }
 
+MainCode::~MainCode(){}
+
 void MainCode::start(int argc, const char* argv[]) throw(ExceptionMainCode){
 	try{
 		Cmd::init(argc, argv);
@@ -28,7 +30,7 @@ void MainCode::start(int argc, const char* argv[]) throw(ExceptionMainCode){
 
 		DispatcherClient::getInstance().start(moduleName.c_str());
 		Log::getInstance().start();
-		WebServer::getInstance().start();
+		WebServer::getInstance().start(this);
 
 		threadFunc();
 

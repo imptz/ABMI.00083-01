@@ -9,19 +9,19 @@
 #include "cmd.h"
 #include "config.h"
 #include "log.h"
+#include "iResourceHandler.h"
 
 class ExceptionMainCode : public exception{
 public:
 	const char* what() const throw();
 };
 
-class MainCode : public Base{
+class MainCode : public Base, public IResourceHandler{
 protected:
 	virtual void threadFunc() = 0;
 
 public:
-	//virtual ~MainCode() = 0;
-
+	virtual ~MainCode();
 	void start(int argc, const char* argv[]) throw(ExceptionMainCode);
 };
 

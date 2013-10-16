@@ -15,6 +15,8 @@
 #include "base.h"
 #include "config.h"
 #include "log.h"
+#include "threadPool.h"
+#include "iResourceHandler.h"
 
 class ExceptionWebServer : public std::exception{
 };
@@ -36,10 +38,14 @@ private:
 	int serverSocket;
 	sockaddr_in serverAddr;
 
+	ThreadPool threadPool;
+
+	IResourceHandler* resourceHandler;
+
 public:
 	WebServer();
 	~WebServer();
-	void start();
+	void start(IResourceHandler* _resourceHandler);
 	void join();
 
 private:

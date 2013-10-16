@@ -1,4 +1,5 @@
 #include "webServer.h"
+#include "httpHandler.h"
 
 #include <iostream>
 
@@ -18,8 +19,10 @@ WebServer::~WebServer(){
 	down();
 }
 
-void WebServer::start(){
+void WebServer::start(IResourceHandler* _resourceHandler){
 	try{
+		resourceHandler = _resourceHandler;
+
 		int index = Config::getElementIndex("server");
 		if (index == -1){
 			syslog(LOG_INFO, "In the configuration file are not set server options module. Exit.");
@@ -62,33 +65,24 @@ void WebServer::join(){
 }
 
 void WebServer::threadFunc(){
-	unsigned int clientSocket;
-
 	while (true){
 		sleep(1);
 		setInstanceFlag();
 		
-		clientSocket = accept(serverSocket, NULL, NULL);
-        if(clientSocket < 0){
-            perror("accept");
-        }
-
-        while(true){
-        	unsigned char buf[1024];
-            int bytes_read = recv(clientSocket, buf, 10, 0);
-            if(bytes_read <= 0) 
-            	break;
-            
-            send(clientSocket, buf, bytes_read, 0);
-        }
-    
-        close(clientSocket);
+		int clientSocket = accept(serverSocket, NULL, NULL);
+		if (clientSocket >= 0){
+			threadPool.initThread(new HttpHandler(clientSocket, resourceHandler));
+		}
 	}
 }
 
 void WebServer::up(const char* _ip, unsigned int _port) throw(ExceptionWebServer){
 	serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (serverSocket == -1)
+		throw ExceptionWebServerUp();
+
+	int sockopt_on = 1;
+	if (setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &sockopt_on, sizeof(int)) == -1)
 		throw ExceptionWebServerUp();
 
 	memset(&serverAddr, 0, sizeof(serverAddr));
@@ -99,23 +93,6 @@ void WebServer::up(const char* _ip, unsigned int _port) throw(ExceptionWebServer
 		throw ExceptionWebServerUp();
 
 	listen(serverSocket, 1);
-
-	while(true){
-		int sock = accept(serverSocket, NULL, NULL);
-		if (sock >= 0){
-			char buf[1024];
-			int readCount = recv(sock, buf, 1024, 0);
-			if (readCount < 0)
-				break;
-
-			написать обработчик запроса
-
-			std::cout << buf << std::endl;
-			close(sock);
-		}
-	}
-
-
 }
 
 void WebServer::down(){

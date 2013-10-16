@@ -3,6 +3,7 @@
 #include "mainCode.h"
 #include "log.h"
 #include "threadPool.h"
+#include "iResourceHandler.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ class MainCodeTest : public MainCode{
 	}
 public:
 	virtual ~MainCodeTest(){}
+	virtual std::string handler(std::string& resourcePath){
+		return __FUNCTION__;
+	}
 };
 
 
@@ -38,45 +42,38 @@ public:
 	}
 };
 
-#include "http.h"
+// #include "http.h"
 
-int main(int argc, const char* argv[]){
-	try{
-		std::string test = "GET /index sdsd\r\n\r\ntelo zaprosa\nsssssssssssssssssssssssssssssss\nffffffffffffffffffffffffffff";
-
-		Http http;
-		HttpRequest request = http.parse(test);
-
-		std::cout << "requestType = " << request.type << endl;
-		std::cout << "requestResourcePath = " << request.resourcePath << endl;
-		std::cout << "requestBody = " << request.body << endl;
-	}catch(ExceptionHttpRequestType& e){
-		std::cout << e.what() << std::endl;
-	}catch(ExceptionHttpRequestResourcePath& e){
-		std::cout << e.what() << std::endl;
-	}catch(ExceptionHttpRequestBody& e){
-		std::cout << e.what() << std::endl;
-	}
-	return 0;
-}
-
-// int main(int argc, const char* argv[]) {
-// 	MainCodeTest mainCode;
-
-// 	A* a1 = new A();
-// 	A* a2 = new A();
-
+// int main(int argc, const char* argv[]){
 // 	try{
-// 		ThreadPool tp;
-// 		tp.initThread(a1);
-// 		tp.initThread(a2);
+// 		std::string test = "GET /index sdsd\r\n\r\ntelo zaprosa\nsssssssssssssssssssssssssssssss\nffffffffffffffffffffffffffff";
 
-// 		mainCode.start(argc, argv);
-// 	}
-// 	catch(const ExceptionMainCode& e){
-// 		cout << e.what() << endl;
-// 	}
+// 		Http http;
+// 		HttpRequest request = http.parse(test);
 
+// 		std::cout << "requestType = " << request.type << endl;
+// 		std::cout << "requestResourcePath = " << request.resourcePath << endl;
+// 		std::cout << "requestBody = " << request.body << endl;
+// 	}catch(ExceptionHttpRequestType& e){
+// 		std::cout << e.what() << std::endl;
+// 	}catch(ExceptionHttpRequestResourcePath& e){
+// 		std::cout << e.what() << std::endl;
+// 	}catch(ExceptionHttpRequestBody& e){
+// 		std::cout << e.what() << std::endl;
+// 	}
 // 	return 0;
 // }
+
+int main(int argc, const char* argv[]) {
+	MainCodeTest mainCode;
+
+	try{
+		mainCode.start(argc, argv);
+	}
+	catch(const ExceptionMainCode& e){
+		cout << e.what() << endl;
+	}
+
+	return 0;
+}
 

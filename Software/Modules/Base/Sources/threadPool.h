@@ -7,8 +7,8 @@
 
 class IThread{
 public:
-	virtual void threadFunc() = 0;
 	virtual ~IThread() = 0;
+	virtual void threadFunc() = 0;
 };
 
 class Thread{
