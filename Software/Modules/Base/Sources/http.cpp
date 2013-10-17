@@ -1,5 +1,7 @@
 #include "http.h"
 
+#include <iostream>
+
 const char* ExceptionHttpFormat::what() const throw(){
 	return "Nepravilniy format Http zaprosa";
 }
@@ -10,6 +12,10 @@ const char* ExceptionHttpRequestType::what() const throw(){
 
 const char* ExceptionHttpRequestResourcePath::what() const throw(){
 	return "Nepravilniy puty resursa";
+}
+
+const char* ExceptionHttpRequestHeaders::what() const throw(){
+	return "Nepravilnie zagolovki";
 }
 
 const char* ExceptionHttpRequestBody::what() const throw(){
@@ -40,22 +46,43 @@ std::string::size_type Http::parseRequestResourcePath(std::string& request, std:
 	std::string::size_type pos = request.find_first_of(" ", startPos + 1);
 
 	if (pos != std::string::npos){
-		resultString = request.substr(startPos, pos - startPos);
+		resultString = request.substr(startPos + 1, pos - startPos - 1);
+
 		return pos;
 	}
 	
 	throw ExceptionHttpRequestResourcePath();
 }
 
-void Http::parseRequestBody(std::string& request, std::string& resultString){
-	std::string::size_type pos = request.find_first_of("\r\n\r\n");
+std::string::size_type Http::parseRequestHeaders(std::string& request, std::map<std::string, std::string>& headers){
+	std::string::size_type pos = request.find_first_of("\r\n") + 2;
 
 	if (pos != std::string::npos){
-		resultString = request.substr(pos + 4);
-		return;
+		std::string::size_type posSubStrEnd = 0;
+		while(true){
+			posSubStrEnd = request.find_first_of("\r\n", pos);
+			std::string subStr = request.substr(pos, posSubStrEnd - pos);
+			posSubStrEnd += 2;
+
+			if (subStr.compare("") == 0)
+				break;
+
+			std::string::size_type posColon = subStr.find_first_of(":");
+			std::string name = subStr.substr(0, posColon);
+			std::string::size_type posEnd = subStr.find_first_of("\r\n", posColon);
+			std::string value = subStr.substr(posColon + 2, posEnd - posColon - 2);
+			headers[name] = value;
+			pos = posSubStrEnd;
+		}
+
+		return posSubStrEnd;
 	}
 	
-	throw ExceptionHttpRequestBody();
+	throw ExceptionHttpRequestHeaders();
+}
+
+void Http::parseRequestBody(std::string& request, std::string& resultString, std::string::size_type startPos){
+	resultString = request.substr(startPos, std::string::npos);
 }
 
 HttpRequest Http::parse(std::string& request){
@@ -64,7 +91,8 @@ HttpRequest Http::parse(std::string& request){
 
 		std::string::size_type pos = parseRequestType(request, requestObject.type); 
 		pos = parseRequestResourcePath(request, requestObject.resourcePath, pos); 
-		parseRequestBody(request, requestObject.body); 
+		pos = parseRequestHeaders(request, requestObject.headers); 
+		parseRequestBody(request, requestObject.body, pos); 
 		return requestObject;
 	}catch(ExceptionHttpRequestType& e){
 		throw e;

@@ -17,52 +17,23 @@ class MainCodeTest : public MainCode{
 	}
 public:
 	virtual ~MainCodeTest(){}
-	virtual std::string handler(std::string& resourcePath){
-		return __FUNCTION__;
+	virtual std::string webHandler(HttpRequest& request){
+		std::cout << __PRETTY_FUNCTION__ << std::endl;
+		std::cout << "request.type: " << request.type << std::endl;
+		std::cout << "request.resourcePath: " << request.resourcePath << std::endl;
+
+		std::cout << "request.headers: " << std::endl;
+		for(map<std::string, std::string>::const_iterator it = request.headers.begin(); it != request.headers.end(); ++it )
+			std::cout << "  " << it->first << " : " << it->second << std::endl;
+
+		std::cout << "request.body: " << std::endl << request.body;
+
+		if (request.resourcePath != "/index.html")
+			throw ExceptionResponseResourceNotFound();
+
+		return "<!DOCTYPE html><html lang=""ru""><head><meta charset=""UTF-8""/><title>Uso</title></head><body>USO Base module</body></html>";
 	}
 };
-
-
-class A : public IThread{
-public:
-	int f;
-	A()
-	:	f(0){
-	}
-
-	virtual void threadFunc(){
-		while(f < 4){
-			cout << __FUNCTION__ << " " << std::this_thread::get_id() << " " << f++ << endl;
-			usleep(1000000);
-		}
-	}
-
-	virtual ~A(){
-		cout << __FUNCTION__ << " " << std::this_thread::get_id() <<  endl;
-	}
-};
-
-// #include "http.h"
-
-// int main(int argc, const char* argv[]){
-// 	try{
-// 		std::string test = "GET /index sdsd\r\n\r\ntelo zaprosa\nsssssssssssssssssssssssssssssss\nffffffffffffffffffffffffffff";
-
-// 		Http http;
-// 		HttpRequest request = http.parse(test);
-
-// 		std::cout << "requestType = " << request.type << endl;
-// 		std::cout << "requestResourcePath = " << request.resourcePath << endl;
-// 		std::cout << "requestBody = " << request.body << endl;
-// 	}catch(ExceptionHttpRequestType& e){
-// 		std::cout << e.what() << std::endl;
-// 	}catch(ExceptionHttpRequestResourcePath& e){
-// 		std::cout << e.what() << std::endl;
-// 	}catch(ExceptionHttpRequestBody& e){
-// 		std::cout << e.what() << std::endl;
-// 	}
-// 	return 0;
-// }
 
 int main(int argc, const char* argv[]) {
 	MainCodeTest mainCode;

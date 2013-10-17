@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"re",
+				"resourcePath"
+			],
+			[
+				"response",
+				"responseBody"
+			],
+			[
 				"Thre",
 				"ThreadPool"
 			],
@@ -56,27 +64,18 @@
 	"buffers":
 	[
 		{
-			"file": "makefile",
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
 			"settings":
 			{
-				"buffer_size": 399,
-				"line_ending": "Unix",
-				"name": "cc = g++-4.7"
+				"buffer_size": 1145,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
 			"settings":
 			{
-				"buffer_size": 261,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
-			"settings":
-			{
-				"buffer_size": 463,
+				"buffer_size": 686,
 				"line_ending": "Unix"
 			}
 		},
@@ -84,23 +83,7 @@
 			"file": "main.cpp",
 			"settings":
 			{
-				"buffer_size": 1591,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
-			"settings":
-			{
-				"buffer_size": 2616,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
-			"settings":
-			{
-				"buffer_size": 950,
+				"buffer_size": 1352,
 				"line_ending": "Unix"
 			}
 		}
@@ -129,28 +112,32 @@
 	},
 	"file_history":
 	[
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/pool.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/pool.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/iResourceHandler.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/iResourceHandler.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/template.html",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/httpHandler.d",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/pool.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/pool.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/makefile",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/HttpHandler.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/singleton.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/log.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/log.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.cpp",
 		"/mnt/home/ilja/Projects/Test/main.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/makefile",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/base.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/base.h",
@@ -244,6 +231,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"/\"",
+			"'",
+			"\\'",
+			"\"",
+			"posEnd",
 			"body",
 			"return",
 			"\n#",
@@ -260,6 +252,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\"\"",
+			"/\"",
+			"'"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -270,29 +265,28 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "makefile",
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
 					"settings":
 					{
-						"buffer_size": 399,
+						"buffer_size": 1145,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								399,
-								399
+								687,
+								687
 							]
 						],
 						"settings":
 						{
-							"auto_name": "cc = g++-4.7",
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -305,15 +299,15 @@
 					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
 					"settings":
 					{
-						"buffer_size": 261,
+						"buffer_size": 686,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								85,
-								85
+								240,
+								240
 							]
 						],
 						"settings":
@@ -328,98 +322,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
-					"settings":
-					{
-						"buffer_size": 463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								291,
-								291
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "main.cpp",
 					"settings":
 					{
-						"buffer_size": 1591,
+						"buffer_size": 1352,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1011,
-								1011
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 741.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
-					"settings":
-					{
-						"buffer_size": 2616,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2507,
-								2507
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1736.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
-					"settings":
-					{
-						"buffer_size": 950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								152,
-								152
+								973,
+								973
 							]
 						],
 						"settings":
@@ -473,7 +387,7 @@
 	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

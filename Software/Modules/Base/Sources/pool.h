@@ -118,24 +118,14 @@ public:
 	void print(){
 		std::lock_guard<std::mutex> lock(mutex);
 		Item* item = listFree;
-		std::cout << "id = " << std::this_thread::get_id() << "listFree: " << item << std::endl;
 		while(item != nullptr){
-			std::cout << "id = " << std::this_thread::get_id() << "   item = " << item << std::endl;
-			std::cout << "id = " << std::this_thread::get_id() << "   item->prev = " << item->prev << std::endl;
-			std::cout << "id = " << std::this_thread::get_id() << "   item->next = " << item->next << std::endl;
-//			std::cout << "   item->elem = " << *item->elem << std::endl << std::endl;
 			item = item->next;
 		}
 
 		std::cout << std::endl;
 
 		item = listAlloc;
-		std::cout << "id = " << std::this_thread::get_id() << "listAlloc: " << item << std::endl;
 		while(item != nullptr){
-			std::cout << "id = " << std::this_thread::get_id() << "   item = " << item << std::endl;
-			std::cout << "id = " << std::this_thread::get_id() << "   item->prev = " << item->prev << std::endl;
-			std::cout << "id = " << std::this_thread::get_id() << "   item->next = " << item->next << std::endl;
-//			std::cout << "   item->elem = " << *item->elem << std::endl << std::endl;
 			item = item->next;
 		}
 	}
