@@ -7,13 +7,11 @@ using namespace std;
 Base::Base()	:
 	id(instancesFlags.size())
 {
-//	cout << __FUNCTION__ << " " << id << endl;
 	instancesFlags.push_back(false);
 }
 
 void Base::setInstanceFlag(){
-//	cout << __FUNCTION__ << " " << id << endl;
-	baseMutex.lock();
+	std::lock_guard<std::mutex> lock(baseMutex);
 	instancesFlags[id] = true;
 	baseMutex.unlock();
 }

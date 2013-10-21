@@ -55,12 +55,12 @@ std::string::size_type Http::parseRequestResourcePath(std::string& request, std:
 }
 
 std::string::size_type Http::parseRequestHeaders(std::string& request, std::map<std::string, std::string>& headers){
-	std::string::size_type pos = request.find_first_of("\r\n") + 2;
+	std::string::size_type pos = request.find("\r\n") + 2;
 
 	if (pos != std::string::npos){
 		std::string::size_type posSubStrEnd = 0;
 		while(true){
-			posSubStrEnd = request.find_first_of("\r\n", pos);
+			posSubStrEnd = request.find("\r\n", pos);
 			std::string subStr = request.substr(pos, posSubStrEnd - pos);
 			posSubStrEnd += 2;
 
@@ -69,7 +69,7 @@ std::string::size_type Http::parseRequestHeaders(std::string& request, std::map<
 
 			std::string::size_type posColon = subStr.find_first_of(":");
 			std::string name = subStr.substr(0, posColon);
-			std::string::size_type posEnd = subStr.find_first_of("\r\n", posColon);
+			std::string::size_type posEnd = subStr.find("\r\n", posColon);
 			std::string value = subStr.substr(posColon + 2, posEnd - posColon - 2);
 			headers[name] = value;
 			pos = posSubStrEnd;

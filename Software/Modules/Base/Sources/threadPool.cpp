@@ -29,7 +29,6 @@ void Thread::innerThreadFunc(){
 		delete pThreadObj;
 		pThreadObj = nullptr;
 		pool->free(this);
-		pool->print();
 	}
 }
 

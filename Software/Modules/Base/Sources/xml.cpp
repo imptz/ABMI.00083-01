@@ -404,8 +404,6 @@ void XmlParser::parseXml(char* sourceStart, char* _sourceEnd){
 		throw e;
 	}
 
-	print();
-
 	delete[] sourceStart;
 }
 

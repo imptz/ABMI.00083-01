@@ -14,7 +14,7 @@ void MainCode::start(int argc, const char* argv[]) throw(ExceptionMainCode){
 	try{
 		Cmd::init(argc, argv);
 
-		string moduleName = "unknownModuleName";
+		string moduleName = "uso::unknownModuleName";
 		if (Cmd::isParameterExists(Cmd::CMD_NAME))
 			moduleName = Cmd::getParameterValue(Cmd::CMD_NAME);
 

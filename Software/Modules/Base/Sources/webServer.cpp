@@ -66,7 +66,7 @@ void WebServer::join(){
 
 void WebServer::threadFunc(){
 	while (true){
-		sleep(1);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		setInstanceFlag();
 		
 		int clientSocket = accept(serverSocket, NULL, NULL);
@@ -92,7 +92,7 @@ void WebServer::up(const char* _ip, unsigned int _port) throw(ExceptionWebServer
 	if (bind(serverSocket, reinterpret_cast<sockaddr*>(&serverAddr), sizeof(serverAddr)) < 0)
 		throw ExceptionWebServerUp();
 
-	listen(serverSocket, 1);
+	listen(serverSocket, 10);
 }
 
 void WebServer::down(){

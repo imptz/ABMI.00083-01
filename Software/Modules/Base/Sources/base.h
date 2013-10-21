@@ -9,6 +9,7 @@ using namespace std;
 class Base{
 protected:
 	mutex baseMutex;
+	
 public:
 	static vector<bool> instancesFlags;
 	unsigned int id;

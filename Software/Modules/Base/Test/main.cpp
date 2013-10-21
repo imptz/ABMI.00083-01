@@ -1,13 +1,17 @@
 #include <iostream>
+#include <sys/time.h>
+#include <sstream>
 
 #include "mainCode.h"
 #include "log.h"
 #include "threadPool.h"
 #include "iResourceHandler.h"
+#include "templatePage.h"
 
 using namespace std;
 
 class MainCodeTest : public MainCode{
+private:
 	virtual void threadFunc(){
 		while(true){
 			sleep(1);
@@ -15,23 +19,40 @@ class MainCodeTest : public MainCode{
 			Log::getInstance().putMessage(Message::TYPE_INFO, "senderMain", "TestMessageMain");
 		}
 	}
+	mutex webHandlerMutex;
+
 public:
 	virtual ~MainCodeTest(){}
 	virtual std::string webHandler(HttpRequest& request){
-		std::cout << __PRETTY_FUNCTION__ << std::endl;
+		std::lock_guard<std::mutex> lock(webHandlerMutex);
+		struct timeval start;
+		gettimeofday(&start, NULL);
+
+		std::cout << __PRETTY_FUNCTION__ << " : " << start.tv_usec << std::endl;
 		std::cout << "request.type: " << request.type << std::endl;
 		std::cout << "request.resourcePath: " << request.resourcePath << std::endl;
 
 		std::cout << "request.headers: " << std::endl;
-		for(map<std::string, std::string>::const_iterator it = request.headers.begin(); it != request.headers.end(); ++it )
+		for(map<std::string, std::string>::const_iterator it = request.headers.begin(); it != request.headers.end(); ++it)
 			std::cout << "  " << it->first << " : " << it->second << std::endl;
+
 
 		std::cout << "request.body: " << std::endl << request.body;
 
-		if (request.resourcePath != "/index.html")
+		if (request.resourcePath != "/index.html"){
+			webHandlerMutex.unlock();
 			throw ExceptionResponseResourceNotFound();
+		}
 
-		return "<!DOCTYPE html><html lang=""ru""><head><meta charset=""UTF-8""/><title>Uso</title></head><body>USO Base module</body></html>";
+		std::stringstream strTime;
+  		strTime << start.tv_usec;
+		std::string mainBlock(std::string("Resource: index.html ") + strTime.str() + "\n");
+		std::string res(TemplatePage::getPage(mainBlock));
+
+		setInstanceFlag();
+
+		webHandlerMutex.unlock();
+		return res;
 	}
 };
 

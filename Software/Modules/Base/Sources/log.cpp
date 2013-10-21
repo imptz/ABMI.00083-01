@@ -49,16 +49,14 @@ void Log::join(){
 }
 
 void Log::putMessage(Message::TYPE type, const string& sender, const string& message){
-//		cout << __FUNCTION__ << " sender: " << sender << endl;
 	std::lock_guard<std::mutex> lock(messagesMutex);
-//		cout << __FUNCTION__ << " in mutex " << " sender: " << sender << endl;
 	messages.push(Message(type, sender, message));
 	messagesMutex.unlock();
 }
 
 void Log::threadFunc(){
 	while (true){
-		sleep(1);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		setInstanceFlag();
 	}
 }

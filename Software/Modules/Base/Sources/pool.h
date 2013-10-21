@@ -5,7 +5,7 @@
 #include <thread>
 #include <mutex>
 
-template<typename T, unsigned int initSize = 3>
+template<typename T, unsigned int initSize = 1>
 class Pool{
 private:
 	std::mutex mutex;
