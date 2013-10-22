@@ -1,11 +1,11 @@
 cc = g++-4.7
 cflags = -Wall -std=gnu++11 -g
 ldflags = -g -pthread
-source_dirs := . ../Sources ../../Dispatcher/Sources
+source_dirs := . ../Base/Sources Sources ../Dispatcher/Sources
 
 search_wildcards := $(addsuffix /*.cpp,$(source_dirs)) 
 
-logTest: $(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards))))
+log: $(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards))))
 	$(cc) $(ldflags) $^ -o $@ 
 
 VPATH := $(source_dirs)

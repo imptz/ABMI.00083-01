@@ -5,7 +5,7 @@
 #include "threadPool.h"
 #include "http.h"
 #include "iResourceHandler.h"
-
+#include "resources.h"
 
 class ErrorPage{
 private:
@@ -23,6 +23,7 @@ class HttpHandler : public IThread{
 private:
 	int sock;
 	IResourceHandler* resourceHandler;
+	Resources resources;
 
 public:
 	HttpHandler(int _sock, IResourceHandler* _resourceHandler);

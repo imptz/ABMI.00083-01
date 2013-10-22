@@ -14,9 +14,8 @@ class MainCodeTest : public MainCode{
 private:
 	virtual void threadFunc(){
 		while(true){
-			sleep(1);
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			setInstanceFlag();
-			Log::getInstance().putMessage(Message::TYPE_INFO, "senderMain", "TestMessageMain");
 		}
 	}
 	mutex webHandlerMutex;
@@ -25,8 +24,8 @@ public:
 	virtual ~MainCodeTest(){}
 	virtual std::string webHandler(HttpRequest& request){
 		std::lock_guard<std::mutex> lock(webHandlerMutex);
-		struct timeval start;
-		gettimeofday(&start, NULL);
+		// struct timeval start;
+		// gettimeofday(&start, NULL);
 
 		// std::cout << __PRETTY_FUNCTION__ << " : " << start.tv_usec << std::endl;
 		// std::cout << "request.type: " << request.type << std::endl;
@@ -39,20 +38,19 @@ public:
 
 		// std::cout << "request.body: " << std::endl << request.body;
 
-		if (request.resourcePath != "/index.html"){
+		std::string mainBlock;
+
+		if ((request.resourcePath == "/") || (request.resourcePath == "/index.html")){
+			mainBlock = std::string("Resource: index.html журнал событий\n");
+		}else{
 			webHandlerMutex.unlock();
 			throw ExceptionResponseResourceNotFound();
 		}
 
-		std::stringstream strTime;
-  		strTime << start.tv_usec;
-		std::string mainBlock(std::string("Resource: index.html ") + strTime.str() + "\n");
-		std::string res(TemplatePage::getPage(mainBlock));
-
-		setInstanceFlag();
+		std::string result(TemplatePage::getPage(mainBlock));
 
 		webHandlerMutex.unlock();
-		return res;
+		return result;
 	}
 };
 
@@ -61,7 +59,8 @@ int main(int argc, const char* argv[]) {
 
 	try{
 		mainCode.start(argc, argv);
-	}catch(const ExceptionMainCode& e){
+	}
+	catch(const ExceptionMainCode& e){
 		cout << e.what() << endl;
 	}
 
