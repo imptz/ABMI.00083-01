@@ -6,9 +6,6 @@
 #include <unistd.h>
 #include <string.h>
 
-const char* ErrorPage::ERROR_PAGE_FIRST = "<!DOCTYPE html><html lang=""ru""><head><meta charset=""UTF-8""/><title>Uso</title></head><body>";
-const char* ErrorPage::ERROR_PAGE_SECOND = "</body></html>";
-
 HttpHandler::HttpHandler(int _sock, IResourceHandler* _resourceHandler)
 	:	sock(_sock), resourceHandler(_resourceHandler){
 	try{
@@ -21,25 +18,26 @@ HttpHandler::~HttpHandler(){
 }
 
 void HttpHandler::threadFunc(){
-	const unsigned int BUFFER_SIZE = 1024 * 1024 * 10; // размер буфера должен динамически меняться от размера получаемых данных и размер должен быть известен resourceHandler-у
-	char* buf = nullptr;
+	const unsigned int INIT_BUFFER_SIZE = 1024 * 1024 * 10;
+	char* bufferStart = nullptr;
 
 	try{
-		buf = new char[BUFFER_SIZE];
-		memset(buf, 0, BUFFER_SIZE);
-		
-		int readCount = recv(sock, buf, BUFFER_SIZE, 0);
+		bufferStart = new char[INIT_BUFFER_SIZE];
+		memset(bufferStart, 0, INIT_BUFFER_SIZE);
+		int readCount = recv(sock, bufferStart, INIT_BUFFER_SIZE, 0);
 		if (readCount > 0){
 			try{
 		 		Http http;
-		 		std::string bufStr = std::string(buf);
-
-//		 		std::cout << std::endl << bufStr << std::endl << std::endl;	
+		 		std::string bufStr = std::string(bufferStart);
 
 		 		std::string responseBody = "";
 		 		std::string response = "HTTP/1.1 200 OK\r\n\r\n";
 
 		 		HttpRequest request = http.parse(bufStr);
+		 		if ((request.resourcePath == "") || (request.resourcePath == "/")){
+		 			request.resourcePath = "/index.html";
+		 		}
+
 				try{
 					response += std::string((resources.getResource(request.resourcePath)).pData);
 				}catch(ExceptionResourcesNotFound& e){
@@ -56,10 +54,11 @@ void HttpHandler::threadFunc(){
 			}catch(std::exception& e){
 			}
 		}
-
-		delete[] buf;
 	}catch(std::exception& e){
 	}
+
+	if (bufferStart != nullptr)
+		delete[] bufferStart;
 
 	close(sock);		
 }

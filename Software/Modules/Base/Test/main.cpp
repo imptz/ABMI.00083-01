@@ -39,14 +39,14 @@ public:
 
 		// std::cout << "request.body: " << std::endl << request.body;
 
-		if (request.resourcePath != "/index.html"){
+		if (request.resourcePath != "/test"){
 			webHandlerMutex.unlock();
 			throw ExceptionResponseResourceNotFound();
 		}
 
 		std::stringstream strTime;
   		strTime << start.tv_usec;
-		std::string mainBlock(std::string("Resource: index.html ") + strTime.str() + "\n");
+		std::string mainBlock(std::string("Resource: test ") + strTime.str() + "\n");
 		std::string res(TemplatePage::getPage(mainBlock));
 
 		setInstanceFlag();

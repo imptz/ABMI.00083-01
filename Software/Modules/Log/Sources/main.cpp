@@ -40,8 +40,8 @@ public:
 
 		std::string mainBlock;
 
-		if ((request.resourcePath == "/") || (request.resourcePath == "/index.html")){
-			mainBlock = std::string("Resource: index.html журнал событий\n");
+		if (request.resourcePath == "/test"){
+			mainBlock = std::string("Resource: test журнал событий\n");
 		}else{
 			webHandlerMutex.unlock();
 			throw ExceptionResponseResourceNotFound();

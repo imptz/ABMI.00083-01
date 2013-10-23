@@ -14,3 +14,6 @@ VPATH := $(source_dirs)
 	$(cc) $(cflags) -c -MD $(addprefix -I,$(source_dirs)) $<
 
 include $(wildcard *.d) 
+
+clean:
+	rm -f *o *d

@@ -1,0 +1,84 @@
+.jQueryUi{
+	display:none;
+}
+
+#newsListHeader{
+	margin: 10px 10px 10px 10px;
+}
+
+#newsListFooter{
+	margin: 10px 10px 10px 10px;
+}
+
+#newsListHeaderAddNews{
+	color: #6b89d8;
+	font-weight: bold;
+}
+
+.newsList{
+	list-style: none;
+	width: 50%;
+	margin:0 auto;
+	padding: 0;
+	text-align: center;
+}
+
+.newsList li{
+	display: inline;
+}
+
+.newsList li a{
+	text-decoration: none;
+	display: inline-block;
+	height: 16px !important;
+	padding: 11px 10px;
+	color: #3b5998;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+}
+
+.newsList li a.newsListCurrent{
+	font-size: 16px;
+	color: #6b89d8;
+}
+
+.previewBlock{
+	margin: 10px;
+	padding: 10px;
+}
+
+.toolBar{
+	margin: 20px 20px 20px 20px;
+}
+
+#newsTitleEdit{
+	resize: none;
+	width: 90%;
+	height: 50px;
+	margin: 0 0 10px 30px;
+}
+
+#newsShortInfoEdit{
+	resize: none;
+	width: 90%;
+	height: 150px;
+	margin: 0 0 10px 30px;
+}
+
+.newsListItemBlock{
+	text-align: center;
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 11px;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #d8dfea;
+}
+
+.newsListItemBlock table tr td{
+	color: #3b5998;
+}
+
+.newsListItemBlock table tr td a{
+	color: #3b5998;
+}
