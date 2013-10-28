@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"mess",
+				"messageCount"
+			],
+			[
+				"write",
+				"writeMessageNumber"
+			],
+			[
+				"sta",
+				"storageFile"
+			],
+			[
+				"storage",
+				"storageFile"
+			],
+			[
+				"message",
+				"messageLength"
+			],
+			[
 				"S",
 				"stringTools"
 			],
@@ -79,7 +99,7 @@
 			"file": "Sources/main.cpp",
 			"settings":
 			{
-				"buffer_size": 1667,
+				"buffer_size": 1771,
 				"line_ending": "Unix"
 			}
 		},
@@ -87,7 +107,7 @@
 			"file": "Sources/storage.cpp",
 			"settings":
 			{
-				"buffer_size": 1668,
+				"buffer_size": 2082,
 				"line_ending": "Unix"
 			}
 		},
@@ -95,7 +115,7 @@
 			"file": "Sources/storage.h",
 			"settings":
 			{
-				"buffer_size": 714,
+				"buffer_size": 1444,
 				"line_ending": "Unix"
 			}
 		}
@@ -124,17 +144,19 @@
 	},
 	"file_history":
 	[
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/makefile",
+		"/usr/include/c++/4.7/fstream",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/Resources/index.html",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/ccb_test_conf",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/makefile",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/Sources/main.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/config.cpp",
@@ -156,7 +178,6 @@
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/config.h",
@@ -253,6 +274,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"strcmp",
+			"\n#",
+			"xchgStations",
 			"print",
 			"	}",
 			"sleep",
@@ -326,15 +350,15 @@
 					"file": "Sources/main.cpp",
 					"settings":
 					{
-						"buffer_size": 1667,
+						"buffer_size": 1771,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								613,
-								613
+								1767,
+								1767
 							]
 						],
 						"settings":
@@ -343,7 +367,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 425.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -353,23 +377,24 @@
 					"file": "Sources/storage.cpp",
 					"settings":
 					{
-						"buffer_size": 1668,
+						"buffer_size": 2082,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								651,
-								651
+								1358,
+								1358
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 83.0,
+						"translation.y": 650.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -379,15 +404,15 @@
 					"file": "Sources/storage.h",
 					"settings":
 					{
-						"buffer_size": 714,
+						"buffer_size": 1444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								702,
-								702
+								1399,
+								1399
 							]
 						],
 						"settings":
@@ -396,7 +421,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 539.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

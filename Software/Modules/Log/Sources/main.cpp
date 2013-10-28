@@ -7,6 +7,7 @@
 #include "threadPool.h"
 #include "iResourceHandler.h"
 #include "templatePage.h"
+#include "storage.h"
 
 using namespace std;
 
@@ -56,8 +57,12 @@ public:
 
 int main(int argc, const char* argv[]) {
 	MainCodeTest mainCode;
+	Storage storage;
 
 	try{
+		storage.init();
+
+		storage.put(MessageType::TYPE_INFO, "ddd");
 		mainCode.start(argc, argv);
 	}
 	catch(const ExceptionMainCode& e){

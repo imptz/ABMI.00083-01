@@ -1,71 +1,85 @@
 #include "storage.h"
 
-const std::string Storahe::STORAGE_FILE_MANE = "messages";
+#include <iostream>
+#include <sstream>
+#include <stdio.h>
+#include <string>
+#include <time.h>
 
+const char* ExceptionStorageInit::what() const throw(){
+	return "Init storage init failed";
+}
+
+const char* ExceptionStoragePut::what() const throw(){
+	return "Init storage put failed";
+}
+
+const std::string Storage::STORAGE_FILE_NAME = "messages";
+					   
 Storage::Storage()
 	:	fInit(false){
 }
 
-~Storage::Storage(){
-	storageFile.close();
+Storage::~Storage(){
+	inStream.close();
+	outStream.close();
 }
 
-std::fstream::pos_type Storage::getFileSize(std::fstream _stream){
-    std::fstream::pos_type position = _stream.tellg();
-    _stream.seekg(0, std::fstream::end);
-	std::fstream::pos_type size = _stream.tellg();
-	_stream.seekg(position, std::fstream::beg);
+void Storage::readHeader(){	
+	std::string buf;
+	std::getline(inStream, buf);
+	header.messageCount = std::stoi(buf);
+	std::getline(inStream, buf);
+	header.writeMessageNumber = std::stoi(buf);
 
-	return size;
+	do{
+		std::getline(inStream, buf);
+	}while(buf != "");
+}
+
+void Storage::writeHeader(){	
+	outStream.seekp(0, std::ios::beg);
+
+	outStream << std::to_string(header.messageCount) << std::endl;
+	outStream << std::to_string(header.writeMessageNumber) << std::endl;
+
+	outStream.flush();
 }
 
 void Storage::init(){
-	storageFile.open(STORAGE_FILE_NAME, std::fstream::in | std::fstream::outs);
+	inStream.open(STORAGE_FILE_NAME, std::ifstream::binary);
+	if (!inStream.good()){
+		inStream.close();
 
-	if (!storageFile.good()){
-		header.messageLength = MESSAGE_LENGTH;
+		outStream.open(STORAGE_FILE_NAME, std::ios::out | std::fstream::binary);
+		
 		header.messageCount = 0;
 		header.writeMessageNumber = 0;
 
 		writeHeader();
-	}
+		outStream.close();
+		inStream.open(STORAGE_FILE_NAME, std::ifstream::binary);
+	}	
 
-	std::ifstream::pos_type storageSize = getFileSize(storageFile);
-	if (storageSize > STORAGE_FILE_SIZE_MAX_LIMIT)
-		throw ExceptionStorageInit();		
+	readHeader();
+	if (!outStream.is_open())
+		outStream.open(STORAGE_FILE_NAME, std::ios::out | std::ios::in | std::fstream::binary);
 
-	std::filebuf* pbuf = storageFile.rdbuf();
-	pbuf->sgetn(result.pData, result.size);
+	std::cout << header.messageCount << " : " << header.writeMessageNumber << std::endl;
 
     fInit = true;
 }
 
-void Storage::writeHeader(){
-	storageFile xxxxxxxxxxxxxxxxxxxxxxxxxx
+void Storage::put(MessageType::TYPE messageType, char* message){
+	if (!fInit)
+		throw ExceptionStoragePut();
+
+	std::string msg;
+
+	time_t dateTime;
+	time(&dateTime);
+
+	struct tm* dateTimeStruct = localtime(&dateTime);
+
+	outStream << msg << dateTimeStruct->tm_year + 1900 << "." << dateTimeStruct->tm_mon + 1 << "." << dateTimeStruct->tm_mday << " " << dateTimeStruct->tm_hour << ":" << dateTimeStruct->tm_min << ":" << dateTimeStruct->tm_sec << " " << MessageType::typeToString(messageType) << " " << message << std::endl;
 }
-
-// Resource Resources::getResource(std::string name){
-// 	if (!fInit)
-// 		throw ExceptionResourcesNotFound();
-
-// 	auto it = resourcesList.find(name);
-//     if (it == resourcesList.end())
-//     	throw ExceptionResourcesNotFound();
-
-
-// 	std::ifstream resourceFile(resourcesDir + name, std::ifstream::in | std::ifstream::binary);
-// 	if (!resourceFile.good())
-// 		throw ExceptionResourcesNotFound();
-
-// 	Resource result;
-// 	result.size = resourcesList[name];
-// 	result.pData = new char[result.size];
-
-// 	std::filebuf* pbuf = resourceFile.rdbuf();
-
-// 	pbuf->sgetn(result.pData, result.size);
-
-// 	resourceFile.close();
-
-// 	return result;
-// }
