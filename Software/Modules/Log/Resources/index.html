@@ -2,11 +2,9 @@
 	<html lang="ru">
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Site log</title>
+		<title>Модуль логирования УСО</title>
 		<link rel="stylesheet" href="/main.css" type="text/css"/>
 		<script src="/jquery-1.9.1.js"></script>
-		<script src="/jquery.cookie.js"></script>
-		<script src="/jquery-ui-1.10.3.custom.js"></script>
 		<script src="/main.js"></script>
 		<script>
 			jQuery(document).ready(System.start);
@@ -15,17 +13,6 @@
   <body>
 	<div id="headBarHolder">
 		<div id="headBar">
-			<div id="headBarLogo">
-				LOGOTIP
-			</div>
-			<div id="headBarTitle">
-				Title on headBar page info page name current position
-			</div>
-			<div id="headNavigationArea">
-				<ul>
-
-				</ul>
-			</div>
 		</div>
 	</div>
 	<div id="mainArea">
@@ -34,16 +21,11 @@
 				<ul>
 				</ul>
 			</div>
-			<div id="leftNewsArea">
-				<h4>НОВОСТИ</h4>
-				<ul>
-				</ul>
-			</div>
 		</div>
 		<div id="workArea">
-			<h1>Журнал событий главная страница</h1>
-		</div>
-		<div id="bannersArea">
+			<table id="logList">
+
+			</table>
 		</div>
 	</div>
 	<div id="pageFooter">

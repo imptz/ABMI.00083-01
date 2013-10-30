@@ -99,7 +99,15 @@
 			"file": "Sources/main.cpp",
 			"settings":
 			{
-				"buffer_size": 1771,
+				"buffer_size": 1974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
+			"settings":
+			{
+				"buffer_size": 1746,
 				"line_ending": "Unix"
 			}
 		},
@@ -107,7 +115,7 @@
 			"file": "Sources/storage.cpp",
 			"settings":
 			{
-				"buffer_size": 2082,
+				"buffer_size": 4768,
 				"line_ending": "Unix"
 			}
 		},
@@ -115,8 +123,32 @@
 			"file": "Sources/storage.h",
 			"settings":
 			{
-				"buffer_size": 1444,
+				"buffer_size": 1527,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/singleton.h",
+			"settings":
+			{
+				"buffer_size": 547,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Resources/index.html",
+			"settings":
+			{
+				"buffer_size": 659,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Resources/main.js",
+			"settings":
+			{
+				"buffer_size": 491,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -131,7 +163,10 @@
 	},
 	"console":
 	{
-		"height": 153.0
+		"height": 153.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -144,26 +179,30 @@
 	},
 	"file_history":
 	[
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.cpp",
+		"/mnt/home/ilja/Projects/Web/PtzSite/Www/sys/classes/rzd/routeForm.html",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/Resources/index.html",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.h",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.cpp",
+		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/makefile",
 		"/usr/include/c++/4.7/fstream",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/Resources/index.html",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/resources.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/ccb_test_conf",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Log/Sources/main.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/templatePage.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Test/main.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/mainCode.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/config.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xml.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/xmlExceptions.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/webServer.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/threadPool.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/stringTools.h",
@@ -175,8 +214,6 @@
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/log.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/iResourceHandler.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/iResourceHandler.cpp",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.h",
-		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/http.cpp",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/dispatcherClient.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.h",
 		"/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/crc32.cpp",
@@ -260,7 +297,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 54.0
 	},
 	"find_in_files":
 	{
@@ -274,6 +311,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			">\n",
 			"strcmp",
 			"\n#",
 			"xchgStations",
@@ -316,12 +354,13 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
 					"file": "ccb_test_conf",
+					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 125,
@@ -348,17 +387,18 @@
 				{
 					"buffer": 1,
 					"file": "Sources/main.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1771,
+						"buffer_size": 1974,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1767,
-								1767
+								1756,
+								1756
 							]
 						],
 						"settings":
@@ -367,25 +407,26 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 425.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "Sources/storage.cpp",
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/httpHandler.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2082,
+						"buffer_size": 1746,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1358,
-								1358
+								871,
+								871
 							]
 						],
 						"settings":
@@ -394,25 +435,26 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 650.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "Sources/storage.h",
+					"file": "Sources/storage.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1444,
+						"buffer_size": 4768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1399,
-								1399
+								3712,
+								3712
 							]
 						],
 						"settings":
@@ -421,7 +463,119 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 539.0,
+						"translation.y": 2337.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Sources/storage.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								503,
+								503
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/mnt/home/ilja/Projects/GitProjects/ABMI.00083-01/Software/Modules/Base/Sources/singleton.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								421,
+								421
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Resources/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 659,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								567,
+								567
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Resources/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 491,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								489,
+								489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -431,7 +585,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 35.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -464,9 +618,10 @@
 	{
 		"height": 425.0
 	},
+	"project": "log.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -493,10 +648,24 @@
 		],
 		"width": 380.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": false,
 	"side_bar_width": 150.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

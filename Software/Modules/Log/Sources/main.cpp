@@ -21,6 +21,10 @@ private:
 	}
 	mutex webHandlerMutex;
 
+	std::string getLog(HttpRequest& request){
+		return Storage::getInstance().get(1,1);
+	}
+
 public:
 	virtual ~MainCodeTest(){}
 	virtual std::string webHandler(HttpRequest& request){
@@ -39,30 +43,29 @@ public:
 
 		// std::cout << "request.body: " << std::endl << request.body;
 
+		std::string result;
 		std::string mainBlock;
 
-		if (request.resourcePath == "/test"){
-			mainBlock = std::string("Resource: test журнал событий\n");
+		if (request.resourcePath == "/getLog"){
+			result = getLog(request);
 		}else{
 			webHandlerMutex.unlock();
 			throw ExceptionResponseResourceNotFound();
 		}
-
-		std::string result(TemplatePage::getPage(mainBlock));
 
 		webHandlerMutex.unlock();
 		return result;
 	}
 };
 
-int main(int argc, const char* argv[]) {
+int main(int argc, const char* argv[]){
 	MainCodeTest mainCode;
-	Storage storage;
 
 	try{
-		storage.init();
-
-		storage.put(MessageType::TYPE_INFO, "ddd");
+		Storage::getInstance().init();
+		Storage::getInstance().put(MessageType::TYPE_INFO, "New test сообщение1");
+		Storage::getInstance().put(MessageType::TYPE_ERROR, "New test сообщение2");
+		Storage::getInstance().put(MessageType::TYPE_INFO, "New test сообщение3");
 		mainCode.start(argc, argv);
 	}
 	catch(const ExceptionMainCode& e){

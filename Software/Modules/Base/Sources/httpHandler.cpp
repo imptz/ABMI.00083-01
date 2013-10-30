@@ -33,6 +33,8 @@ void HttpHandler::threadFunc(){
 		 		std::string responseBody = "";
 		 		std::string response = "HTTP/1.1 200 OK\r\n\r\n";
 
+		 		std::cout << __FUNCTION__ << std::endl << bufStr << std::endl;
+
 		 		HttpRequest request = http.parse(bufStr);
 		 		if ((request.resourcePath == "") || (request.resourcePath == "/")){
 		 			request.resourcePath = "/index.html";

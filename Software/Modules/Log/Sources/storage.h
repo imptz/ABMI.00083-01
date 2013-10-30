@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include "singleton.h"
+
 class ExceptionStorage : public std::exception{
 protected:
 
@@ -17,6 +19,11 @@ public:
 };
 
 class ExceptionStoragePut : public ExceptionStorage{
+public:
+	const char* what() const throw();
+};
+
+class ExceptionStorageGet : public ExceptionStorage{
 public:
 	const char* what() const throw();
 };
@@ -45,36 +52,31 @@ struct MessageType{
 	}
 };
 
-struct StorageFileHeader{
-	static const unsigned int HEADER_STRING_LENGTH = 10;
-	static const unsigned int MESSAGE_LENGTH = 1024;
-	int messageCount;
-	int writeMessageNumber;
-	int realFileHeaderSize;
-};
-
-class Storage{
+class Storage : public Singleton<Storage>{
 private:
 	bool fInit;
+	static const std::string STORAGE_FOLDER_NAME;
 	static const std::string STORAGE_FILE_NAME;
-
-	static const unsigned int STORAGE_FILE_SIZE_MAX_LIMIT = StorageFileHeader::MESSAGE_LENGTH * 1024 * 10 + sizeof(StorageFileHeader);
+	static const unsigned int MAX_LOG_FILE_SIZE = 1024 * 1024 * 10;
 
 	std::ifstream inStream;
 	std::ofstream outStream;
 
-	StorageFileHeader header;
+	std::vector<std::string> fileList;
+	unsigned int lastFileNameNumber;
 
-	std::vector<std::string> messages;
+	void createLogsFolder();
+	void createNextLogFile();
 
-	void readHeader();
-	void writeHeader();
+	long getFileSize(std::ofstream& _stream);
 
 public:
+	static const int LAST_MESSAGE_NUMBER = -1;
 	Storage();
 	~Storage();
 	void init();
 	void put(MessageType::TYPE messageType, char* message);
+	std::string get(int start, unsigned int count);
 };
 
 #endif

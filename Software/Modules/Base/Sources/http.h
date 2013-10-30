@@ -35,6 +35,7 @@ public:
 struct HttpRequest{
 	std::string type;
 	std::string resourcePath;
+	std::map<std::string, std::string> params;
 	std::map<std::string, std::string> headers;
 	std::string body; 
 };
@@ -42,7 +43,7 @@ struct HttpRequest{
 class Http{
 private:
 	std::string::size_type parseRequestType(std::string& request, std::string& resultString);	
-	std::string::size_type parseRequestResourcePath(std::string& request, std::string& resultString, std::string::size_type startPos);
+	std::string::size_type parseRequestResourcePath(std::string& request, std::string& resultString, std::map<std::string, std::string>& params, std::string::size_type startPos);
 	std::string::size_type parseRequestHeaders(std::string& request, std::map<std::string, std::string>& headers);
 	void parseRequestBody(std::string& request, std::string& resultString, std::string::size_type startPos);
 

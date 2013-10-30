@@ -5,74 +5,124 @@
 #include <stdio.h>
 #include <string>
 #include <time.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <algorithm>
+#include <iomanip>  
 
 const char* ExceptionStorageInit::what() const throw(){
-	return "Init storage init failed";
+	return "Storage init failed";
 }
 
 const char* ExceptionStoragePut::what() const throw(){
-	return "Init storage put failed";
+	return "Storage put failed";
 }
 
-const std::string Storage::STORAGE_FILE_NAME = "messages";
+const char* ExceptionStorageGet::what() const throw(){
+	return "Storage get failed";
+}
+
+const std::string Storage::STORAGE_FOLDER_NAME = "Logs";
+const std::string Storage::STORAGE_FILE_NAME = "log";
 					   
 Storage::Storage()
-	:	fInit(false){
+	:	fInit(false), lastFileNameNumber(0){
 }
 
 Storage::~Storage(){
-	inStream.close();
 	outStream.close();
 }
 
-void Storage::readHeader(){	
-	std::string buf;
-	std::getline(inStream, buf);
-	header.messageCount = std::stoi(buf);
-	std::getline(inStream, buf);
-	header.writeMessageNumber = std::stoi(buf);
+void Storage::createLogsFolder(){
+    DIR *dp;
+    struct dirent *dirp;
 
-	do{
-		std::getline(inStream, buf);
-	}while(buf != "");
+    if((dp  = opendir(STORAGE_FOLDER_NAME.c_str())) == NULL){
+    	if (mkdir(STORAGE_FOLDER_NAME.c_str(), 0760) == -1){
+        	throw ExceptionStorageInit();
+        }
+
+        if((dp  = opendir(STORAGE_FOLDER_NAME.c_str())) == NULL)
+        	throw ExceptionStorageInit();	
+    }
+
+    bool isEmpty = true;
+
+    while ((dirp = readdir(dp)) != NULL){
+    	std::string fileName(dirp->d_name);
+    	if ((fileName != ".") && (fileName != "..")){
+			isEmpty = false;
+			break;
+        }
+    }
+
+    closedir(dp);
+
+	if (isEmpty){
+		outStream.open(STORAGE_FOLDER_NAME + "/" + STORAGE_FILE_NAME + "0", std::ios::out | std::fstream::binary);
+		outStream.close();
+	}
 }
 
-void Storage::writeHeader(){	
-	outStream.seekp(0, std::ios::beg);
+void Storage::createNextLogFile(){
+	if (outStream.is_open())
+		outStream.close();
 
-	outStream << std::to_string(header.messageCount) << std::endl;
-	outStream << std::to_string(header.writeMessageNumber) << std::endl;
-
-	outStream.flush();
+	++lastFileNameNumber;
+	outStream.open(STORAGE_FOLDER_NAME + "/" + STORAGE_FILE_NAME + std::to_string(lastFileNameNumber), std::ios::out | std::fstream::binary);
+	fileList.push_back(STORAGE_FILE_NAME + std::to_string(lastFileNameNumber));
 }
 
 void Storage::init(){
-	inStream.open(STORAGE_FILE_NAME, std::ifstream::binary);
-	if (!inStream.good()){
-		inStream.close();
+	createLogsFolder();
 
-		outStream.open(STORAGE_FILE_NAME, std::ios::out | std::fstream::binary);
-		
-		header.messageCount = 0;
-		header.writeMessageNumber = 0;
+	try{
+	    DIR *dp;
+	    struct dirent *dirp;
 
-		writeHeader();
-		outStream.close();
-		inStream.open(STORAGE_FILE_NAME, std::ifstream::binary);
-	}	
+	    if((dp  = opendir(STORAGE_FOLDER_NAME.c_str())) == NULL)
+	        	throw ExceptionStorageInit();
 
-	readHeader();
-	if (!outStream.is_open())
-		outStream.open(STORAGE_FILE_NAME, std::ios::out | std::ios::in | std::fstream::binary);
+	    while ((dirp = readdir(dp)) != NULL){
+	    	std::string fileName(dirp->d_name);
+	    	if ((fileName != ".") && (fileName != "..")){
+	        	fileList.push_back(fileName);
+	        }
+	    }
 
-	std::cout << header.messageCount << " : " << header.writeMessageNumber << std::endl;
+	    closedir(dp);
 
-    fInit = true;
+		std::sort(fileList.begin(), fileList.end()); 
+
+		if (fileList.size() == 0)
+			throw ExceptionStorageInit();	
+
+		lastFileNameNumber = stoi(fileList[fileList.size() - 1].substr(STORAGE_FILE_NAME.length(), std::string::npos));
+		outStream.open(STORAGE_FOLDER_NAME + "/" + STORAGE_FILE_NAME + std::to_string(lastFileNameNumber), std::ios::in | std::ios::out | std::fstream::binary);
+		outStream.seekp(0, std::ofstream::end);
+
+	    fInit = true;
+	}catch(const ExceptionStorage& e){
+		throw e;
+	}
+}
+
+long Storage::getFileSize(std::ofstream& _stream){
+	auto curPos = _stream.tellp();
+    std::cout << __FUNCTION__ << " cp " << curPos << std::endl;
+    _stream.seekp(0, std::ofstream::end);
+    auto fileSize = _stream.tellp();
+    std::cout << __FUNCTION__ << "  " << fileSize << std::endl;
+    _stream.seekp(curPos);
+    return fileSize; 
 }
 
 void Storage::put(MessageType::TYPE messageType, char* message){
 	if (!fInit)
 		throw ExceptionStoragePut();
+
+	if (getFileSize(outStream) >= MAX_LOG_FILE_SIZE)
+		createNextLogFile();
 
 	std::string msg;
 
@@ -81,5 +131,64 @@ void Storage::put(MessageType::TYPE messageType, char* message){
 
 	struct tm* dateTimeStruct = localtime(&dateTime);
 
-	outStream << msg << dateTimeStruct->tm_year + 1900 << "." << dateTimeStruct->tm_mon + 1 << "." << dateTimeStruct->tm_mday << " " << dateTimeStruct->tm_hour << ":" << dateTimeStruct->tm_min << ":" << dateTimeStruct->tm_sec << " " << MessageType::typeToString(messageType) << " " << message << std::endl;
+	outStream << msg << 
+		dateTimeStruct->tm_year + 1900 << 
+		"." << std::setfill('0') <<
+		std::setw(2) << dateTimeStruct->tm_mon + 1 << 
+		"." << 
+		std::setw(2) << dateTimeStruct->tm_mday << 
+		"\t" << 
+		std::setw(2) << dateTimeStruct->tm_hour << 
+		":" << 
+		std::setw(2) << dateTimeStruct->tm_min << 
+		":" << 
+		std::setw(2) << dateTimeStruct->tm_sec << 
+		"\t" << 
+		MessageType::typeToString(messageType) << 
+		"\t" << 
+		message << std::endl;
+
+	outStream.flush();
 }
+
+std::string Storage::get(int start, unsigned int count){
+	if (!fInit)
+		throw ExceptionStorageGet();
+
+	inStream.open(STORAGE_FOLDER_NAME + "/" + STORAGE_FILE_NAME + std::to_string(lastFileNameNumber), std::ios::in | std::fstream::binary);
+	if (!inStream.good())
+		throw ExceptionStorageGet();
+
+	std::string result;
+	std::string buf;
+	do{
+		std::getline(inStream, buf);
+		result += buf + "\n";
+	}while(buf != "");
+
+	inStream.close();
+	return result;
+}
+
+// if (!inStream.good()){
+
+// void Storage::readHeader(){	
+// 	std::string buf;
+// 	std::getline(inStream, buf);
+// 	header.messageCount = std::stoi(buf);
+// 	std::getline(inStream, buf);
+// 	header.writeMessageNumber = std::stoi(buf);
+
+// 	do{
+// 		std::getline(inStream, buf);
+// 	}while(buf != "");
+// }
+
+// void Storage::writeHeader(){	
+// 	outStream.seekp(0, std::ios::beg);
+
+// 	outStream << std::to_string(header.messageCount) << std::endl;
+// 	outStream << std::to_string(header.writeMessageNumber) << std::endl;
+
+// 	outStream.flush();
+// }

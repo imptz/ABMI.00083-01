@@ -1,7 +1,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
-#include <thread>
+#include <mutex>
 
 template<class T>
 class Singleton{

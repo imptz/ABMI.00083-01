@@ -42,13 +42,32 @@ std::string::size_type Http::parseRequestType(std::string& request, std::string&
 	throw ExceptionHttpRequestType();
 }
 
-std::string::size_type Http::parseRequestResourcePath(std::string& request, std::string& resultString, std::string::size_type startPos){
-	std::string::size_type pos = request.find_first_of(" ", startPos + 1);
+std::string::size_type Http::parseRequestResourcePath(std::string& request, std::string& resultString, std::map<std::string, std::string>& params, std::string::size_type startPos){
+	std::string::size_type resultPos = request.find(" ", startPos + 1);
 
-	if (pos != std::string::npos){
-		resultString = request.substr(startPos + 1, pos - startPos - 1);
+	if (resultPos != std::string::npos){
+		std::string str = request.substr(startPos + 1, resultPos - startPos - 1);
+		std::string::size_type pos = str.find("?", 0);
+		resultString = str.substr(0, pos);
+		if (pos != std::string::npos){
+			++pos;
+			while(true){
+				std::string::size_type posValue = str.find("=", pos);
+				if (posValue != std::string::npos){
+					std::string::size_type posNext = str.find("&", pos);
+					params[str.substr(pos, posValue  - pos)] = str.substr(posValue + 1, posNext - posValue - 1);
+					
+					if (posNext == std::string::npos)
+						break;
 
-		return pos;
+					pos = posNext + 1;
+				}else{
+					break;
+				}
+			}
+		}
+
+		return resultPos;
 	}
 	
 	throw ExceptionHttpRequestResourcePath();
@@ -90,9 +109,10 @@ HttpRequest Http::parse(std::string& request){
 		HttpRequest requestObject;
 
 		std::string::size_type pos = parseRequestType(request, requestObject.type); 
-		pos = parseRequestResourcePath(request, requestObject.resourcePath, pos); 
+		pos = parseRequestResourcePath(request, requestObject.resourcePath, requestObject.params, pos); 
 		pos = parseRequestHeaders(request, requestObject.headers); 
 		parseRequestBody(request, requestObject.body, pos); 
+
 		return requestObject;
 	}catch(ExceptionHttpRequestType& e){
 		throw e;
