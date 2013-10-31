@@ -2,15 +2,14 @@
 #define STORAGE_H
 
 #include <exception>
-#include <fstream>
 #include <string>
-#include <vector>
+#include <mutex>
+
+#include <mysql.h>
 
 #include "singleton.h"
 
 class ExceptionStorage : public std::exception{
-protected:
-
 };
 
 class ExceptionStorageInit : public ExceptionStorage{
@@ -54,21 +53,20 @@ struct MessageType{
 
 class Storage : public Singleton<Storage>{
 private:
+	std::mutex mutex;
 	bool fInit;
-	static const std::string STORAGE_FOLDER_NAME;
-	static const std::string STORAGE_FILE_NAME;
-	static const unsigned int MAX_LOG_FILE_SIZE = 1024 * 1024 * 10;
+	static const std::string DB_NAME;
+	static const std::string DB_USER_NAME;
+	static const std::string DB_USER_PASSWORD;
+	static const std::string DB_ROOT_NAME;
+	static const std::string DB_ROOT_PASSWORD;
 
-	std::ifstream inStream;
-	std::ofstream outStream;
+	static const std::string QUERY_CREATE_DATABASE;
+	static const std::string QUERY_DROP_DATABASE;
 
-	std::vector<std::string> fileList;
-	unsigned int lastFileNameNumber;
+	MYSQL *mysql;
 
-	void createLogsFolder();
-	void createNextLogFile();
-
-	long getFileSize(std::ofstream& _stream);
+	bool createDatabase();
 
 public:
 	static const int LAST_MESSAGE_NUMBER = -1;

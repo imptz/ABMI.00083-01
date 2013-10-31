@@ -84,6 +84,7 @@ public:
 		if (listFree != nullptr)
 			listFree->prev = nullptr;
 
+		mutex.unlock();
 		
 		return listAlloc->elem;
 	}
@@ -113,6 +114,7 @@ public:
 
 			item = item->next;
 		}
+		mutex.unlock();
 	}
 
 	void print(){

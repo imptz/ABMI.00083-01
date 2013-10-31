@@ -63,9 +63,8 @@ int main(int argc, const char* argv[]){
 
 	try{
 		Storage::getInstance().init();
-		Storage::getInstance().put(MessageType::TYPE_INFO, "New test сообщение1");
-		Storage::getInstance().put(MessageType::TYPE_ERROR, "New test сообщение2");
-		Storage::getInstance().put(MessageType::TYPE_INFO, "New test сообщение3");
+//		Storage::getInstance().put(MessageType::TYPE_INFO, "New test сообщение1");
+
 		mainCode.start(argc, argv);
 	}
 	catch(const ExceptionMainCode& e){
